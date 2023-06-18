@@ -11,3 +11,42 @@
   <img width="48" height="48" src="https://cdn.freebiesupply.com/logos/large/2x/rabbitmq-logo-png-transparent.png"style="margin-right: 10px;"/>
   
 </div>
+
+
+1. Clone o projeto em sua máquina.
+```bash
+   git clone <url do repositorio>
+```
+
+2. Crie a virtualenv com o comando (Ambiente Linux).
+```bash
+   python3 -m venv venv
+   source/bin/activate
+```
+
+2.1. Crie a virtualenv com o comando (Ambiente Windows).
+```bash
+   python -m venv venv
+   .\venv\Scripts\activate
+```
+
+3. Instale os pacotes requeridos.
+```bash
+   pip install -r requirements.txt
+```
+
+4. Migre o projeto.
+```bash
+   python manege.py migrate
+```
+
+4.1. Faça o build do docker-compose.
+```bash
+   docker-compose up --build
+```
+
+5. Start o servidor
+
+```bash
+  python manage.py runserver
+```
