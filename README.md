@@ -1,6 +1,10 @@
 # Sistema de Gestão de Propostas de Empréstimo Pessoal (SGPEP)
 <br>
 
+Este é um sistema de gestão de propostas de empréstimo pessoal desenvolvido como parte de um desafio técnico. O objetivo principal do sistema é fornecer uma plataforma robusta e eficiente para gerenciar propostas de empréstimo pessoal.
+
+<br>
+
 <div style="display: flex;">
   <img width="48" height="48" src="https://img.icons8.com/color/48/python--v1.png" alt="python--v1" style="margin-right: 10px;"/>
   <img width="48" height="48" src="https://img.icons8.com/external-tal-revivo-color-tal-revivo/48/external-django-a-high-level-python-web-framework-that-encourages-rapid-development-logo-color-tal-revivo.png" alt="external-django-a-high-level-python-web-framework-that-encourages-rapid-development-logo-color-tal-revivo" style="margin-right: 10px;"/>
