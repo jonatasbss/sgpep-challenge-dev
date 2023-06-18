@@ -5,10 +5,11 @@ from random import randint
 
 
 @shared_task
-def avaliar_prosposta(proposta_id):
+def avaliar_proposta(proposta_id):
     proposta = get_object_or_404(Proposta, id=proposta_id)
     if randint(0, 1) == 0:
         proposta.status = 'Aprovado'
     else:
         proposta.status = 'Reprovado'
     proposta.save()
+

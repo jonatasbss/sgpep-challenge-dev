@@ -2,10 +2,11 @@
 {% load static %}
 {% block title %}Home | {% endblock title %}
 {% block content %}
+    <div class="toast-container"></div>
 
-    <div class="col-md-12 mb-4">
+    <div class="col-md-12">
         <div class="row">
-            <div class="col-lg-4 col-md-12">
+            <div class="col-md-12 col-lg-4 mb-3">
                 <div class="card">
                     <div class="card-body">
                         <div class="card-title d-flex align-items-start justify-content-between">
@@ -19,7 +20,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-lg-4 col-md-12">
+            <div class="col-md-12 col-lg-4 mb-3">
                 <div class="card">
                     <div class="card-body">
                         <div class="card-title d-flex align-items-start justify-content-between">
@@ -34,7 +35,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-lg-4 col-md-12">
+            <div class="col-md-12 col-lg-4 mb-3">
                 <div class="card">
                     <div class="card-body">
                         <div class="card-title d-flex align-items-start justify-content-between">
@@ -48,52 +49,240 @@
                     </div>
                 </div>
             </div>
-
         </div>
     </div>
 
     <div class="col-md-12">
-
         <div class="row">
-
-            <div class="card">
-                <h5 class="card-header">Propostas Cadastradas</h5>
-                <div class="table-responsive text-nowrap">
-                    <table class="table">
-                        <thead>
-                        <tr>
-                            <th>Cliente</th>
-                            <th>CPF</th>
-                            <th>Status</th>
-                            <th>Actions</th>
-                        </tr>
-                        </thead>
-                        <tbody class="table-border-bottom-0">
-                        {% for proposta in propostas %}
+            <div class="col-md-12 mb-3">
+                <div class="card">
+                    <h5 class="card-header">Propostas Cadastradas</h5>
+                    <div class="table-responsive text-nowrap">
+                        <table class="table">
+                            <thead>
                             <tr>
-                                <td><i class="fab fa-angular fa-lg text-danger me-3"></i>
-                                    <strong>{{ proposta.nome_completo }}</strong></td>
-                                <td>{{ proposta.cpf }}</td>
-                                <td><span id="status" class="badge me-1">{{ proposta.status }}</span></td>
-                                <td>
-                                    <a class="text-black" href="javascript:void(0);"><i class="bx bx-edit-alt me-1"></i></a>
-                                    <a class="text-black" href="javascript:void(0);"><i class="bx bx-trash me-1"></i>
-                                    </a>
-                                </td>
+                                <th>Cliente</th>
+                                <th>CPF</th>
+                                <th>Status</th>
                             </tr>
-                        {% endfor %}
-                        </tbody>
-                    </table>
+                            </thead>
+                            <tbody class="table-border-bottom-0">
+                            {% for proposta in propostas %}
+                                <tr>
+                                    <td><i class="fab fa-angular fa-lg text-danger me-3"></i>
+                                        <strong>{{ proposta.nome_completo }}</strong></td>
+                                    <td>{{ proposta.cpf }}</td>
+                                    <td><span id="status" class="badge me-1">{{ proposta.status }}</span></td>
+                                </tr>
+                            {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
-
             </div>
-
         </div>
-
     </div>
+
+    <div class="col-md-12 mb-3">
+        <div class="row">
+            <!-- Basic with Icons -->
+            <div class="col-xxl">
+                <div class="card mb-4">
+                    <div class="card-header d-flex align-items-center justify-content-between">
+                        <h5 class="mb-0">Cadastrar Proposta</h5>
+                    </div>
+                    <div class="card-body">
+                        <form id="propostaForm">
+                            {% csrf_token %}
+                            <div class="row mb-3">
+                                <label class="col-sm-2 col-form-label" for="basic-icon-default-email">Email</label>
+                                <div class="col-sm-10">
+                                    <div class="input-group input-group-merge">
+                                        <span class="input-group-text"><i class="bx bx-envelope"></i></span>
+                                        <input type="text" id="cliente-email" name="cliente"
+                                               class="form-control" placeholder="john.doe"
+                                               aria-label="john.doe" aria-describedby="basic-icon-default-email2"/>
+                                        <span class="input-group-text" id="basic-default-email2">@gmail.com</span>
+
+                                    </div>
+                                    <div class="form-text">Você pode usar letras, números e pontos</div>
+                                </div>
+                            </div>
+                            <div class="row mb-3">
+                                <label class="col-sm-2 col-form-label" for="basic-icon-default-fullname">Nome
+                                    completo</label>
+                                <div class="col-sm-10">
+                                    <div class="input-group input-group-merge">
+                                          <span id="basic-icon-default-fullname2" class="input-group-text">
+                                              <i class="bx bx-user"></i>
+                                          </span>
+                                        <input type="text" class="form-control" id="nome_completo"
+                                               name="nome_completo"
+                                               placeholder="John Doe" aria-label="John Doe"
+                                               aria-describedby="basic-icon-default-fullname2"/>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row mb-3">
+                                <label class="col-sm-2 col-form-label" for="basic-icon-default-company">CPF</label>
+                                <div class="col-sm-10">
+                                    <div class="input-group input-group-merge">
+                                        <span id="basic-icon-default-cpf" class="input-group-text">
+                                            <i class="bx bx-detail"></i></span>
+                                        <input type="text" id="cpf" name="cpf" class="form-control"
+                                               placeholder="000.000.000-00" aria-label="000.000.000-00"
+                                               aria-describedby="basic-icon-default-cpf"/>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row mb-3">
+                                <label class="col-sm-2 col-form-label"
+                                       for="basic-icon-default-fullname">Endereço</label>
+                                <div class="col-sm-10">
+                                    <div class="input-group input-group-merge">
+                                          <span id="basic-icon-default-fullname2" class="input-group-text">
+                                              <i class="bx bx-home"></i>
+                                          </span>
+                                        <input type="text" class="form-control" id="endereco"
+                                               name="endereco"
+                                               placeholder="Wall StNew York, NY, EUA"
+                                               aria-label="Wall StNew York, NY, EUA"
+                                               aria-describedby="basic-icon-default-endereco"/>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <div class="row mb-3">
+                                <label class="col-sm-2 form-label" for="basic-icon-default-money">Valor da
+                                    proposta</label>
+                                <div class="col-sm-10">
+                                    <div class="input-group input-group-merge">
+                              <span id="basic-icon-default-money" class="input-group-text">
+                                  <i class="bx bx-money"></i>
+                              </span>
+                                        <input type="text" id="valor_emprestimo" name="valor_emprestimo"
+                                               class="form-control money-mask" placeholder="R$ 1000,00"
+                                               aria-label="R$ 1000,00" aria-describedby="basic-icon-default-money"/>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row justify-content-end">
+                                <div class="col-sm-10">
+                                    <button type="submit" class="btn btn-primary">Cadastrar</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
 
 
 {% endblock content %}
 {% block script %}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/js-cookie/2.2.1/js.cookie.min.js"></script>
+
+    <!-- Page JS -->
+    <script src="{% static 'js/ui-toasts.js' %}"></script>
+
     <script src="{% static 'proposta/list-proposta.js' %}"></script>
+    {#    <script src="{% static 'proposta/new-proposta.js' %}"></script>#}
+
+    <script>
+        $(document).ready(function () {
+
+            const createPropostaURL = '{% url "proposta:create_proposta" %}';
+            const csrftoken = Cookies.get('csrftoken');
+
+            $('#propostaForm').on('submit', function (event) {
+                event.preventDefault();
+
+                let emailInput = $('#cliente-email');
+                let emailValue = emailInput.val();
+                let gmailSuffix = '@gmail.com';
+
+                if (!emailValue.endsWith(gmailSuffix)) {
+                    emailValue += gmailSuffix;
+                    emailInput.val(emailValue);
+                }
+
+                let data = {
+                    cliente: {email: emailValue},
+                    nome_completo: $('#nome_completo').val(),
+                    cpf: $('#cpf').val(),
+                    endereco: $('#endereco').val(),
+                    valor_emprestimo: $('#valor_emprestimo').val(),
+                };
+
+                $.ajax({
+                    url: createPropostaURL,
+                    method: 'POST',
+                    dataType: 'json',
+                    data: JSON.stringify(data),
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'X-CSRFToken': csrftoken
+                    },
+                    success: function (response) {
+
+                        let toast = $('<div class="bs-toast toast fade show bg-success position-fixed top-0 end-0 mt-4 me-4" role="alert" aria-live="assertive" aria-atomic="true">' +
+                            '<div class="toast-header">' +
+                            '<i class="bx bx-bell me-2"></i>' +
+                            '<div class="me-auto fw-semibold">SGPEP</div>' +
+                            '<button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>' +
+                            '</div>' +
+                            '<div class="toast-body">' +
+                            'Proposta enviada com sucesso!' +
+                            '</div>' +
+                            '</div>');
+
+                        $('.toast-container').append(toast);
+                        toast.toast('show');
+
+
+                        $('#propostaForm')[0].reset();
+
+                        setTimeout(function () {
+                            window.location.reload();
+                        }, 2000);
+                    },
+                    error: function (xhr, status, error) {
+
+                        let errorMessage = 'Ocorreu um erro ao enviar a proposta.';
+                        let responseText = xhr.responseText;
+                        let errorData = JSON.parse(responseText);
+                        let emailErrorMessage = errorData.cliente.email[0];
+
+                        let errorToast = $('<div class="bs-toast toast fade show bg-danger position-fixed top-0 end-0 mt-4 me-4" role="alert" aria-live="assertive" aria-atomic="true">' +
+                            '<div class="toast-header">' +
+                            '<i class="bx bx-bell me-2"></i>' +
+                            '<div class="me-auto fw-semibold">SGPEP</div>' +
+                            '<button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>' +
+                            '</div>' +
+                            '<div class="toast-body">' +
+                            errorMessage + '<br>' +
+                            emailErrorMessage +
+                            '</div>' +
+                            '</div>');
+
+                        $('.toast-container').append(errorToast);
+                        errorToast.toast('show');
+
+                        {#console.log(emailErrorMessage);#}
+
+
+                        {#alert('Ocorreu um erro ao enviar a proposta.');#}
+                        {#console.log(xhr.responseText);#}
+                    }
+                })
+            })
+        })
+    </script>
+
+
 {% endblock script %}

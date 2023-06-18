@@ -13,7 +13,7 @@ class Proposta(models.Model):
     nome_completo = models.CharField(max_length=255)
     cpf = models.CharField(max_length=255)
     endereco = models.CharField(max_length=255)
-    valor_emprestico = models.DecimalField(max_digits=10, decimal_places=2)
+    valor_emprestimo = models.DecimalField(max_digits=10, decimal_places=2)
     status = models.CharField(max_length=30, choices=STATUS_PROPOSTA, default='Em Análise')
 
     class Meta:

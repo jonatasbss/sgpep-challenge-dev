@@ -1,7 +1,8 @@
 from rest_framework.viewsets import ModelViewSet
 from .serializers import PropostaSerializer
 from .models import Proposta
-from .tasks import avaliar_prosposta
+from .tasks import avaliar_proposta
+from datetime import timedelta
 
 
 class PropostaViewSet(ModelViewSet):
@@ -10,4 +11,4 @@ class PropostaViewSet(ModelViewSet):
 
     def perform_create(self, serializer):
         proposta = serializer.save()
-        avaliar_prosposta.delay(proposta.id)
+        avaliar_proposta.delay(proposta.id)
