@@ -10,7 +10,7 @@
   <img width="48" height="48" src="https://img.icons8.com/color/48/docker.png" alt="docker"/>
   <img width="48" height="48" src="https://img.icons8.com/color/48/javascript--v1.png" alt="javascript--v1"/>
   <img width="48" height="48" src="https://upload.wikimedia.org/wikipedia/commons/1/19/Celery_logo.png">
-   <img width="48" height="48" src="https://www.rabbitmq.com/img/logo-rabbitmq.svg">
+   <img width="48" height="48" src="https://cdn.freebiesupply.com/logos/large/2x/rabbitmq-logo-png-transparent.png">
   
   
   
