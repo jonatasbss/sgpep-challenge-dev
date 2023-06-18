@@ -1,0 +1,51 @@
+version: '3'
+
+services:
+  rabbitmq:
+    image: rabbitmq:3-management-alpine
+    container_name: rabbitmq
+    ports:
+      - "5672:5672"
+
+  api:
+    build: .
+    container_name: api
+    env_file: .env
+    environment:
+      - DJANGO_SETTINGS_MODULE=sgpe.settings
+    command: bash -c "python -m create_user_admin && python manage.py runserver 0.0.0.0:8000"
+    volumes:
+      - .:/sgpe
+    depends_on:
+      - rabbitmq
+    links:
+      - rabbitmq
+    ports:
+      - "8000:8000"
+
+  dev_container:
+    build: .
+    container_name: app
+    env_file:
+      - .env
+    volumes:
+      - .:/sgpe
+    depends_on:
+      - rabbitmq
+    links:
+      - rabbitmq
+    expose:
+      - "8000"
+    environment:
+      - DJANGO_SETTINGS_MODULE=sgpe.settings
+
+  celery:
+    build: .
+    container_name: celery
+    env_file:
+      - .env
+    volumes:
+      - .:/sgpe
+    depends_on:
+      - rabbitmq
+    command: celery -A sgpe worker --loglevel=info

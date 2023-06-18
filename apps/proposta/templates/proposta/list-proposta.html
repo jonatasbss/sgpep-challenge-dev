@@ -1,0 +1,99 @@
+{% extends 'base/base-template.html' %}
+{% load static %}
+{% block title %}Home | {% endblock title %}
+{% block content %}
+
+    <div class="col-md-12 mb-4">
+        <div class="row">
+            <div class="col-lg-4 col-md-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="card-title d-flex align-items-start justify-content-between">
+                            <div class="avatar flex-shrink-0">
+                                <img src="{% static 'img/icons/unicons/chart.png' %}"
+                                     alt="chart success" class="rounded"/>
+                            </div>
+                        </div>
+                        <span class="fw-semibold d-block mb-1">Em Análise</span>
+                        <h3 class="card-title mb-2">{{ em_analise|length }}</h3>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="card-title d-flex align-items-start justify-content-between">
+                            <div class="avatar flex-shrink-0">
+                                <img
+                                        src="{% static 'img/icons/unicons/chart-success.png' %}"
+                                        alt="chart success" class="rounded"/>
+                            </div>
+                        </div>
+                        <span class="fw-semibold d-block mb-1">Aprovadas</span>
+                        <h3 class="card-title mb-2">{{ aprovadas|length }}</h3>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="card-title d-flex align-items-start justify-content-between">
+                            <div class="avatar flex-shrink-0">
+                                <img src="{% static 'img/icons/unicons/chart-danger.png' %}"
+                                     alt="chart success" class="rounded"/>
+                            </div>
+                        </div>
+                        <span class="fw-semibold d-block mb-1">Reprovadas</span>
+                        <h3 class="card-title mb-2">{{ reprovadas|length }}</h3>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="col-md-12">
+
+        <div class="row">
+
+            <div class="card">
+                <h5 class="card-header">Propostas Cadastradas</h5>
+                <div class="table-responsive text-nowrap">
+                    <table class="table">
+                        <thead>
+                        <tr>
+                            <th>Cliente</th>
+                            <th>CPF</th>
+                            <th>Status</th>
+                            <th>Actions</th>
+                        </tr>
+                        </thead>
+                        <tbody class="table-border-bottom-0">
+                        {% for proposta in propostas %}
+                            <tr>
+                                <td><i class="fab fa-angular fa-lg text-danger me-3"></i>
+                                    <strong>{{ proposta.nome_completo }}</strong></td>
+                                <td>{{ proposta.cpf }}</td>
+                                <td><span id="status" class="badge me-1">{{ proposta.status }}</span></td>
+                                <td>
+                                    <a class="text-black" href="javascript:void(0);"><i class="bx bx-edit-alt me-1"></i></a>
+                                    <a class="text-black" href="javascript:void(0);"><i class="bx bx-trash me-1"></i>
+                                    </a>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+{% endblock content %}
+{% block script %}
+    <script src="{% static 'proposta/list-proposta.js' %}"></script>
+{% endblock script %}
